@@ -34,9 +34,11 @@ SERVER_REPLICA="${SERVER_REPLICA:-1}"
 CLIENT_REPLICA="${CLIENT_REPLICA:-1}"
 ISTIO_INJECT="${ISTIO_INJECT:-false}"
 LINKERD_INJECT="${LINKERD_INJECT:-disabled}"
+FSM_INJECT="{FSM_INJECT:-false}"
 INTERCEPTION_MODE="${INTERCEPTION_MODE:-REDIRECT}"
 FORTIO_SERVER_INGRESS_CERT_ENABLED="${FORTIO_SERVER_INGRESS_CERT_ENABLED:-false}"
 echo "linkerd inject is ${LINKERD_INJECT}"
+echo "fsm inject is ${FSM_INJECT}"
 
 mkdir -p "${TMPDIR}"
 
@@ -63,6 +65,8 @@ function setup_test() {
       --set client.inject="${ISTIO_INJECT}" \
       --set server.injectL="${LINKERD_INJECT}" \
       --set client.injectL="${LINKERD_INJECT}" \
+      --set server.injectL="${FSM_INJECT}" \
+      --set client.injectL="${FSM_INJECT}" \      
       --set domain="${DNS_DOMAIN}" \
       --set interceptionMode="${INTERCEPTION_MODE}" \
       --set fortioImage="fortio/fortio:latest_release" \
@@ -96,6 +100,11 @@ if [[ "$LINKERD_INJECT" == "enabled" ]]
 then
   kubectl annotate namespace "${NAMESPACE}" linkerd.io/inject=enabled || true
 fi
+
+if [[ "$FSM_INJECT" == "enabled" ]]
+then
+  kubectl annotate namespace "${NAMESPACE}" flomesh.io/sidecar-injection=enabled || true
+if
 
 if [[ "$FORTIO_SERVER_INGRESS_CERT_ENABLED" == "true" ]]
 then

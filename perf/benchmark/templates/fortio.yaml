@@ -365,9 +365,12 @@ spec:
         {{- end }}
         sidecar.istio.io/inject: "{{ $.V.inject }}"
         linkerd.io/inject: "{{ $.V.injectL }}"
+        flomesh.io/sidecar-injection: "{{ $.V.injectF }}"
 {{- if eq $.V.injectL "enabled" }}
         config.linkerd.io/skip-outbound-ports: "8077"
         config.linkerd.io/skip-inbound-ports: "8077"
+        flomesh.io/outbound-port-exclusion-list: "8077"
+        flomesh.io/inbound-port-exclusion-list: "8077"
 {{- end }}
         # exclude inbound ports of the uncaptured container
         traffic.sidecar.istio.io/excludeInboundPorts: "8076,8077,8078,8081,9999"
