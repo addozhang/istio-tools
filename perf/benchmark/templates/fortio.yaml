@@ -380,6 +380,12 @@ spec:
         traffic.sidecar.istio.io/excludeOutboundPorts: "80,8076,8077,8078, 8081"
         sidecar.istio.io/proxyCPU: {{ $.Values.proxy.cpu }}
         sidecar.istio.io/proxyMemory: {{ $.Values.proxy.memory }}
+        sidecar.istio.io/proxyCPULimit: {{ $.Values.proxy.cpuL }}
+        sidecar.istio.io/proxyMemoryLimit: {{ $.Values.proxy.memoryL }}
+        flomesh.io/sidecar-resource-requests-cpu: {{ $.Values.proxy.cpu }}
+        flomesh.io/sidecar-resource-requests-memory: {{ $.Values.proxy.memory }}
+        flomesh.io/sidecar-resource-limits-cpu: {{ $.Values.proxy.cpuL }}
+        flomesh.io/sidecar-resource-limits-memory: {{ $.Values.proxy.memoryL }}
 {{- if $.Values.proxy.image }}
         sidecar.istio.io/proxyImage: {{ $.Values.proxy.image }}
 {{- end }}
