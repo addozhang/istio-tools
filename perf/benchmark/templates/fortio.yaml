@@ -366,6 +366,7 @@ spec:
         sidecar.istio.io/inject: "{{ $.V.inject }}"
         linkerd.io/inject: "{{ $.V.injectL }}"
         flomesh.io/sidecar-injection: "{{ $.V.injectF }}"
+        flomesh.io/metrics: enabled
 {{- if eq $.V.injectL "enabled" }}
         config.linkerd.io/skip-outbound-ports: "8077"
         config.linkerd.io/skip-inbound-ports: "8077"
