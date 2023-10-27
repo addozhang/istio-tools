@@ -369,6 +369,8 @@ spec:
 {{- if eq $.V.injectL "enabled" }}
         config.linkerd.io/skip-outbound-ports: "8077"
         config.linkerd.io/skip-inbound-ports: "8077"
+{{- end }}
+{{- if eq $.V.injectF "enabled" }}
         flomesh.io/outbound-port-exclusion-list: "8077"
         flomesh.io/inbound-port-exclusion-list: "8077"
 {{- end }}

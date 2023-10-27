@@ -169,8 +169,10 @@ class Fortio:
             self.mesh = "linkerd"
         elif mesh == "istio":
             self.mesh = "istio"
+        elif mesh == "fsm":
+            self.mesh = "fsm"            
         else:
-            sys.exit("invalid mesh %s, must be istio or linkerd" % mesh)
+            sys.exit("invalid mesh %s, must be istio, linkerd or fsm" % mesh)
 
     def get_protocol_uri_fragment(self):
         return "https" if self.protocol_mode == "grpc" else self.protocol_mode
@@ -249,6 +251,9 @@ class Fortio:
         elif self.mesh == "linkerd":
             labels += "_"
             labels += "linkerd"
+        elif self.mesh == "fsm":
+            labels += "_"
+            labels += "fsm"
 
         if self.extra_labels is not None:
             labels += "_" + self.extra_labels
@@ -637,7 +642,7 @@ def get_parser():
         default=1024)
     parser.add_argument(
         "--mesh",
-        help="istio or linkerd",
+        help="istio, linkerd or fsm",
         default="istio")
     parser.add_argument(
         "--telemetry_mode",
