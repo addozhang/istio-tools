@@ -16,12 +16,13 @@ export PATH=$PATH:$HOME/.fsm/bin
 fsm version
 
 if [[ -z "${SKIP_EXTRAS:-}" ]]; then
-  # Install FSM
-  fsm install
-elif
+  # Install FSM with Prometheus and Grafana
   fsm install \
     --set=fsm.deployPrometheus=true \
     --set=fsm.deployGrafana=true
+else
+  # Install FSM
+  fsm install
 fi
 
 # Check installation
