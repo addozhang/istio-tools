@@ -57,9 +57,7 @@ python runner/runner.py --config_file ./configs/fsm/fsm_latency.yaml
 ```bash
 export NAMESPACE=twopods-fsm
 export FORTIO_CLIENT_URL=http://$(kubectl get services -n $NAMESPACE fortioclient -o jsonpath="{.status.loadBalancer.ingress[0].ip}"):9076
-kubectl -n fsm-system port-forward svc/fsm-prometheus 7070:7070 &
-export PROMETHEUS_URL=http://localhost:7070
-python runner/fortio.py $FORTIO_CLIENT_URL --prometheus=$PROMETHEUS_URL --csv "StartTime,ActualDuration,Labels,NumThreads,ActualQPS,p50,p90,p99,p999,cpu_mili_avg_fsm_proxy_fortioclient,cpu_mili_avg_fsm_proxy_fortioserver,mem_Mi_avg_fsm_proxy_fortioclient,mem_Mi_avg_fsm_proxy_fortioserver" --csv_output /tmp/fsm_input.csv
+python runner/fortio.py $FORTIO_CLIENT_URL --csv "StartTime,ActualDuration,Labels,NumThreads,ActualQPS,p50,p90,p99,p999" --csv_output /tmp/fsm_input.csv
 ```
 
 7. 
