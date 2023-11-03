@@ -6,7 +6,9 @@ appresources: {}
 
 proxy:
   cpu: "1000m"
+  cpuL: "1000m"
   memory: "512Mi"
+  memoryL: "512Mi"
   image: ""
 
 appresources1:
