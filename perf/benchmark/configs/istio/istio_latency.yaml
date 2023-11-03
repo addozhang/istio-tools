@@ -9,7 +9,7 @@ conn:
     - 64
 qps:
     - 1000
-duration: 120
+duration: 240
 metrics:
     - p50
     - p90
