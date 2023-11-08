@@ -18,10 +18,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-metric_dict = {"cpu-client": "cpu_mili_avg_istio_proxy_fortioclient",
-               "cpu-server": "cpu_mili_avg_istio_proxy_fortioserver",
-               "mem-client": "mem_Mi_avg_istio_proxy_fortioclient",
-               "mem-server": "mem_Mi_avg_istio_proxy_fortioserver"}
+metric_dict = {"cpu-client": "cpu_mili_avg_sidecar_proxy_fortioclient",
+               "cpu-server": "cpu_mili_avg_sidecar_proxy_fortioserver",
+               "mem-client": "mem_Mi_avg_sidecar_proxy_fortioclient",
+               "mem-server": "mem_Mi_avg_sidecar_proxy_fortioserver"}
 
 
 def plotter(args):
@@ -40,7 +40,6 @@ def plotter(args):
     plt.figure(figsize=(1138 / dpi, 871 / dpi), dpi=dpi)
     fig = plt.figure(figsize=(1138 / dpi, 871 / dpi), dpi=dpi)
     ax = fig.add_subplot(111)
-    ax.set_ylim(0, 1.5)
     for key, val in telemetry_modes_y_data.items():
         plt.plot(args.query_list, val, marker='o', label=key)
         for i, j in zip(args.query_list, val):
@@ -126,9 +125,9 @@ def get_y_label(args):
     if args.graph_type.startswith("latency"):
         return 'Latency in milliseconds'
     if args.graph_type.startswith("cpu"):
-        return 'istio-proxy average CPUs (milliseconds)'
+        return 'Sidcar average CPUs (milliseconds)'
     if args.graph_type.startswith("mem"):
-        return "istio-proxy average Memory (Mi)"
+        return "Sidecar average Memory (Mi)"
     return ""
 
 

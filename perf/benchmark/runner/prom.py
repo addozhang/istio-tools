@@ -130,18 +130,14 @@ class Prom:
 
         avg_cpu_dict = self.fetch_istio_proxy_cpu_usage_by_pod_name()
         print(avg_cpu_dict)
-        out["cpu_mili_avg_istio_proxy_fortioclient"] = avg_cpu_dict["fortioclient"]
-        out["cpu_mili_avg_istio_proxy_fortioserver"] = avg_cpu_dict["fortioserver"]
-        out["cpu_mili_avg_fsm_proxy_fortioclient"] = avg_cpu_dict["fortioclient"]
-        out["cpu_mili_avg_fsm_proxy_fortioserver"] = avg_cpu_dict["fortioserver"]
-        out["cpu_mili_avg_istio_proxy_istio-ingressgateway"] = avg_cpu_dict["istio-ingressgateway"]
+        out["cpu_mili_avg_sidecar_proxy_fortioclient"] = avg_cpu_dict["fortioclient"]
+        out["cpu_mili_avg_sidecar_proxy_fortioserver"] = avg_cpu_dict["fortioserver"]
+        out["cpu_mili_avg_sidecar_proxy_istio-ingressgateway"] = avg_cpu_dict["istio-ingressgateway"]
         print(avg_cpu_dict)
         avg_mem_dict = self.fetch_istio_proxy_memory_usage_by_pod_name()
-        out["mem_Mi_avg_istio_proxy_fortioclient"] = avg_mem_dict["fortioclient"]
-        out["mem_Mi_avg_istio_proxy_fortioserver"] = avg_mem_dict["fortioserver"]
-        out["mem_Mi_avg_fsm_proxy_fortioclient"] = avg_mem_dict["fortioclient"]
-        out["mem_Mi_avg_fsm_proxy_fortioserver"] = avg_mem_dict["fortioserver"]
-        out["mem_Mi_avg_istio_proxy_istio-ingressgateway"] = avg_mem_dict["istio-ingressgateway"]
+        out["mem_Mi_avg_sidecar_proxy_fortioclient"] = avg_mem_dict["fortioclient"]
+        out["mem_Mi_avg_sidecar_proxy_fortioserver"] = avg_mem_dict["fortioserver"]
+        out["mem_Mi_avg_sidecar_proxy_istio-ingressgateway"] = avg_mem_dict["istio-ingressgateway"]
 
         return out
 
