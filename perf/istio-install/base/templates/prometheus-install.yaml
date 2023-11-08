@@ -56,7 +56,9 @@ spec:
   serviceAccountName: prometheus
   enableAdminAPI: false
   serviceMonitorNamespaceSelector: {}
-  serviceMonitorSelector: {}
+  serviceMonitorSelector:
+    matchLabels:
+      monitoring: kubelet-monitor
   podMonitorNamespaceSelector: {}
   podMonitorSelector: {}
   podMetadata:
@@ -91,6 +93,7 @@ rules:
   - apiGroups: [""]
     resources:
       - nodes
+      - nodes/metrics
       - services
       - endpoints
       - pods

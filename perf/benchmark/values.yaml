@@ -6,7 +6,9 @@ appresources: {}
 
 proxy:
   cpu: "1000m"
+  cpuL: "1000m"
   memory: "512Mi"
+  memoryL: "512Mi"
   image: ""
 
 appresources1:
@@ -33,6 +35,7 @@ server:  # server overrides
   expose: false
   inject: "false"
   injectL: "disabled" # "enabled" or "disabled"
+  injectF: "disabled" # "enabled" or "disabled"
   replica: 1    # default value
 
 client: # client overrides
@@ -41,6 +44,7 @@ client: # client overrides
   expose: true
   inject: "false"
   injectL: "disabled" # "enabled" or "disabled"
+  injectF: "disabled" # "enabled" or "disabled"
   replica: 1    # default value
 
 cert: 
